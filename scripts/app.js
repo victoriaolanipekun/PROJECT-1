@@ -1,12 +1,95 @@
 function init() {
-  console.log('js up and running')
+
+  const grid = document.querySelector('.grid')
+  // console.log(grid)
+
+  const width = 10
+  const cellCount = width * width
+  const cells = []
+
+  const snakeInitialPosition = 0
+  let snakeCurrentPosition = 0
+  const snakeClass = 'snake'
+
+  //creating the grid 
+  function createGrid() {
+    for (let i = 0; i < cellCount; i++) {
+      const cell = document.createElement('div')
+      // console.log('cell ->', cell)
+      cell.innerText = i
+      // console.log('cell ->', cell)
+      grid.appendChild(cell)
+      // to store the cell values in the array
+      cells.push(cell)
+    }
+    addSnake(snakeInitialPosition)
+  }
+
+  // Add the snake
+  function addSnake(position) {
+    // console.log('position ->', position)
+    // console.log('cell at index ->', cells[position])
+    cells[position].classList.add(snakeClass)
+  }
+
+  // To remove the snake
+  function removeSnake(position) {
+    cells[position].classList.remove(snakeClass)
+  }
+
+
+  // Move snake
+  function handleKeyUp(event) {
+    // console.log('key is being pressed')
+    // console.log(event.keyCode)
+    const key = event.keyCode
+    // console.log('snakeCurrentPositionInitially ->', snakeCurrentPosition)
+    removeSnake(snakeCurrentPosition)
+
+    if (key === 39 && snakeCurrentPosition % width !== width - 1) {
+      //console.log('RIGHT')
+      snakeCurrentPosition++
+      // console.log('snakeCurrentPositionAfterMoving ->', snakeCurrentPosition)
+    } else if (key === 37 && snakeCurrentPosition % width !== 0) {
+      // console.log('LEFT')
+      snakeCurrentPosition--
+    } else if (key === 38 && snakeCurrentPosition >= width) {
+      // console.log('UP')
+      snakeCurrentPosition -= width
+    } else if (key === 40 && snakeCurrentPosition + width <= width * width - 1) {
+      // console.log('DOWN')
+      snakeCurrentPosition += width
+    }
+
+    addSnake(snakeCurrentPosition)
+
+  }
+
+
+  // Event Listner
+  document.addEventListener('keyup', handleKeyUp)
 
 
 
+
+  createGrid()
 
 }
 
 window.addEventListener('DOMContentLoaded', init)
+
+
+
+
+// * The snake should be able to eat food to grow bigger
+// * The game should end when the snake hits the wall or itself
+// * Snake speeds up as it eats more
+
+// ## Suggested enhancements
+
+// * Responsive design
+// * Multi-player mode
+// * High score table
 
 
 
