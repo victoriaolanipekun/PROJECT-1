@@ -8,6 +8,10 @@ body {
 }
 
 
+h1 {
+  text-align: center;
+}
+
 .grid-wrapper {
   height: 100vh;
   display: flex;
@@ -33,3 +37,42 @@ body {
   width: 10%;
 }
 
+.snake {
+  background-color: black;
+}
+
+.food {
+  background-color: chartreuse;
+}
+
+.score-box {
+  display: flex;
+  justify-content: space-between;
+  width: 10%;
+  margin: 10px auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.info-display {
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  top: 100px;
+  left: 100px;
+  position: fixed;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2em;
+  border: 5px dotted rgb(0, 0, 0);
+  width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+}
