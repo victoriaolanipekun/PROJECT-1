@@ -1,77 +1,160 @@
 function init() {
 
+  const startButton = document.querySelector('#start-button')
   const grid = document.querySelector('.grid')
+  console.log(grid)
+  const endMessage = document.querySelector('h2')
   // console.log(grid)
 
   const width = 10
   const cellCount = width * width
-  const cells = []
+  // const cells = []
+  // console.log('cells ->', cells)
+  
 
   const snakeInitialPosition = 0
   let snakeCurrentPosition = 0
   const snakeClass = 'snake'
+  const foodClass = 'food'
+  // console.log(foodClass)
 
-  //creating the grid 
+  let foodTimer
+  let randomnumber = 0
+  let pointsTotal = 0
+  let life = 0
+  let foodInitialPosition = 0
+  // let foodCurrentPosition = Math.floor(Math.random() * cells.length) //get a random number
+  // console.log('foodCurrentPosition ->', foodCurrentPosition)
+  
+
+
+  // creating the grid 
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // console.log('cell ->', cell)
       cell.innerText = i
       // console.log('cell ->', cell)
       grid.appendChild(cell)
       // to store the cell values in the array
-      cells.push(cell)
+      // cells.push(cell)
     }
-    addSnake(snakeInitialPosition)
+    // addSnake(snakeInitialPosition)
   }
 
-  // Add the snake
-  function addSnake(position) {
-    // console.log('position ->', position)
-    // console.log('cell at index ->', cells[position])
-    cells[position].classList.add(snakeClass)
+  // start game function
+  function startGame () {
+    console.log('clicked')
+    const cells = document.querySelectorAll('.grid div')
+    console.log('cells ->', cells)
+    food(cells)
+    display = 1
+    pointsTotalDisplay.innerText = pointsTotal
+    intervalTime = 1000
+    currentS 
+    
+    // cells[foodCurrentPosition].classList.add(foodClass)
+    // console.log('cells ->', cells)
+    // console.log('cells[foodCurrentPosition] ->', cells[foodCurrentPosition])
+    // console.log('cells[foodCurrentPosition].classList ->', cells[foodCurrentPosition].classList)
+    foodTimer = setInterval(() => {
+      if (life <= 0) {
+        alert(`You scored ${pointsTotal}`)
+        clearInterval(foodTimer)
+        return
+      }
+
+      cells[foodCurrentPosition].classList.remove('food')
+      foodCurrentPosition = Math.floor(Math.random() * cells.length)
+      console.log('foodCurrentPosition ->', foodCurrentPosition)
+      cells[foodCurrentPosition].classList.add('food')
+    }, 2000)
   }
 
-  // To remove the snake
-  function removeSnake(position) {
-    cells[position].classList.remove(snakeClass)
-  }
 
 
-  // Move snake
-  function handleKeyUp(event) {
-    // console.log('key is being pressed')
-    // console.log(event.keyCode)
-    const key = event.keyCode
-    // console.log('snakeCurrentPositionInitially ->', snakeCurrentPosition)
-    removeSnake(snakeCurrentPosition)
 
-    if (key === 39 && snakeCurrentPosition % width !== width - 1) {
-      //console.log('RIGHT')
-      snakeCurrentPosition++
-      // console.log('snakeCurrentPositionAfterMoving ->', snakeCurrentPosition)
-    } else if (key === 37 && snakeCurrentPosition % width !== 0) {
-      // console.log('LEFT')
-      snakeCurrentPosition--
-    } else if (key === 38 && snakeCurrentPosition >= width) {
-      // console.log('UP')
-      snakeCurrentPosition -= width
-    } else if (key === 40 && snakeCurrentPosition + width <= width * width - 1) {
-      // console.log('DOWN')
-      snakeCurrentPosition += width
-    }
 
-    addSnake(snakeCurrentPosition)
+    // // set interval
+    // const foodTimer = setInterval(() => {
+    //   if (pointsTotal < 500 && life !== 0) {
+    //     cells[randomnumber].classList.remove(foodClass)
+    //     randomnumber = Math.floor(Math.random() * cellCount)
+    //     cells[randomnumber].classList.add(foodClass)
 
-  }
+
+      //   // check if maximum score has been reached
+      // } else if (snakeCurrentPosition === appleCurrentPosition && pointsTotal === 500 && life !== 0) {
+        // clearInterval(foodTimer)
+        // console.log('You Win!')
+      //   cells.forEach(cell => {
+      //     cell.classList.add('hidden')
+      //   })
+
+      //   endMessage.innerText = 'You Win!'
+      //   endMessage.classList.remove('hidden')
+
+      //   // check if player has lost all lives
+      // } else if (life === 0) {
+      //   clearInterval(foodTimer)
+      //   console.log('Try Again!')
+      //   cells.forEach(cell => {
+      //     cell.classList.add('hidden')
+      //   })
+
+      //   endMessage.innerText = 'Try Again!'
+      //   endMessage.classList.remove('hidden')
+      // }
+
+      
+    // }, 2000)
+  // }
+  
+
+  // // Add the snake
+  // function addSnake(position) {
+  //   // console.log('position ->', position)
+  //   // console.log('cell at index ->', cells[position])
+  //   cells[position].classList.add(snakeClass)
+  // }
+
+  // // To remove the snake
+  // function removeSnake(position) {
+  //   cells[position].classList.remove(snakeClass)
+  // }
+
+
+  // // Control snake movement
+  // function handleKeyUp(event) {
+  //   // console.log('key is being pressed')
+  //   // console.log(event.keyCode)
+  //   const key = event.keyCode
+  //   // console.log('snakeCurrentPositionInitially ->', snakeCurrentPosition)
+  //   removeSnake(snakeCurrentPosition)
+
+  //   if (key === 39 && snakeCurrentPosition % width !== width - 1) {
+  //     //console.log('RIGHT')
+  //     snakeCurrentPosition++
+  //     // console.log('snakeCurrentPositionAfterMoving ->', snakeCurrentPosition)
+  //   } else if (key === 37 && snakeCurrentPosition % width !== 0) {
+  //     // console.log('LEFT')
+  //     snakeCurrentPosition--
+  //   } else if (key === 38 && snakeCurrentPosition >= width) {
+  //     // console.log('UP')
+  //     snakeCurrentPosition -= width
+  //   } else if (key === 40 && snakeCurrentPosition + width <= width * width - 1) {
+  //     // console.log('DOWN')
+  //     snakeCurrentPosition += width
+  //   }
+
+  //   addSnake(snakeCurrentPosition)
+
+  // }
 
 
   // Event Listner
-  document.addEventListener('keyup', handleKeyUp)
+  // document.addEventListener('keyup', handleKeyUp)
 
-
-
-
+  startButton.addEventListener('click', startGame)
   createGrid()
 
 }
