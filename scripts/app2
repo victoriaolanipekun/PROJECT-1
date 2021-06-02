@@ -11,7 +11,7 @@ function init() {
   console.log(cells)
 
   const snakeInitialPosition = 0
-  let snakeCurrentPosition = [1, 0]
+  let snakeCurrentPosition = 0
   const snakeClass = 'snake'
   const foodClass = 'food'
   // console.log(foodClass)
@@ -21,13 +21,9 @@ function init() {
   let pointsTotal = 10
   let score = 0
   let life = 1
+  let lives = 3
   let movement = 0
   let foodInitialPosition = 0
-  let speedTime = 1
-  let crawlTime = 1000
-  let crawl = 0
-  let nav = 1
-
 
   let foodCurrentPosition = Math.floor(Math.random() * cells.length)
   console.log('foodCurrentPosition', foodCurrentPosition)
@@ -37,12 +33,10 @@ function init() {
   // start game
   function startGame () {
     console.log('clicked')
-    cells[foodCurrentPosition].classList.add(foodClass) // show thefood at the start position, outside of the interval so this only happens once 
+    cells[foodCurrentPosition].classList.add(foodClass) // show the mole at the start position, outside of the interval so this only happens once 
     // console.log('cells ->', cells)
     // console.log('cells[foodCurrentPosition] ->', cells[foodCurrentPosition])
     // console.log('cells[foodCurrentPosition].classList ->', cells[foodCurrentPosition].classList)
-    snakeCurrentPosition.forEach((index) => cells[index].classList.add(snakeClass))
-    crawl = setInterval(crawlAfter, crawlTime)
     addfoodPosition(foodCurrentPosition)
   }
   // creating the grid 
@@ -50,7 +44,7 @@ function init() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       // console.log('cell ->', cell)
-      // cell.innerText = i
+      cell.innerText = i
       // console.log('cell ->', cell)
       grid.appendChild(cell)
       // to store the cell values in the array
@@ -59,68 +53,11 @@ function init() {
     addSnake(snakeInitialPosition)
   }
 
-  function crawlAfter() {
-    if (smashWall(cells)) {
-      return clearInterval(crawl)
-    } else {
-      crawling(cells)
-    }
-  }
-
-  function smashWall(cells) {
-    if (
-      (snakeCurrentPosition[0] + width >= width * width && nav === width) ||
-      (snakeCurrentPosition[0] % width === width - 1 && nav === 1) ||
-      (snakeCurrentPosition[0] % width === 0 && nav === -1) ||
-      (snakeCurrentPosition[0] - width <= 0 && nav === -width) ||
-      cells[snakeCurrentPosition[0] + nav].classList.contains(snakeClass)
-    ) {
-      grid.classList.add('hidden')
-          
-      // Show the message
-      endMessage.innerText = 'Try Again!'
-      endMessage.classList.remove('hidden')
-      return true
-    } else {
-      return false
-    }
-  }
-
-  function feedSnake(cells, tail) {
-    if (cells[snakeCurrentPosition[0]].classList.contains(foodClass)) {
-      cells[snakeCurrentPosition[0]].classList.remove(foodClass)
-      cells[tail].classList.add(snakeClass)
-      snakeCurrentPosition.push(tail)
-      //randomApple(squares);
-      addfoodPosition(cells)
-
-      score++
-      if (score === pointsTotal) {
-        grid.classList.add('hidden')
-        endMessage.innerText = 'You Win!'
-        endMessage.classList.remove('hidden')
-      }
-
-      clearInterval(crawl)
-      crawlTime = crawlTime * speedTime
-      crawl = setInterval(crawlAfter, crawlTime)
-    }
-  }
-
-  function crawling(cells) {
-    const tail = snakeCurrentPosition.pop()
-    cells[tail].classList.remove(snakeClass)
-    snakeCurrentPosition.unshift(snakeCurrentPosition[0] + nav)
-    // movement ends here
-    feedSnake(cells, tail)
-    cells[snakeCurrentPosition[0]].classList.add(snakeClass)
-  }
-
-  function addfoodPosition() {
-    cells[foodCurrentPosition].classList.remove(foodClass) // remove the food from the current position
-    foodCurrentPosition = Math.floor(Math.random() * cells.length) // redefine value of currentFoodPosition to be a new random index
+  function addfoodPosition(position) {
+    cells[position].classList.remove(foodClass) // remove the mole from the current position
+    foodCurrentPosition = Math.floor(Math.random() * cells.length) // redefine value of currentMolePosition to be a new random index
     console.log('foodCurrentPosition ->', foodCurrentPosition)
-    cells[foodCurrentPosition].classList.add(foodClass) // add the food at the new index generated above 
+    cells[foodCurrentPosition].classList.add(foodClass) // add the mole at the new index generated above 
   }
 
   // Add the snake
@@ -142,34 +79,94 @@ function init() {
     // console.log(event.keyCode)
     const key = event.keyCode
     // console.log('snakeCurrentPositionInitially ->', snakeCurrentPosition)
-    removeSnake(snakeCurrentPosition[0])
+    removeSnake(snakeCurrentPosition)
 
-    if (key === 39) {
+    if (key === 39 && snakeCurrentPosition % width !== width - 1) {
       //console.log('RIGHT')
-      //alert('right')
-      nav = 1
+      snakeCurrentPosition++
       movement++
+      if (snakeCurrentPosition === foodCurrentPosition) {
+        addfoodPosition(foodCurrentPosition)
+        score++
+        if (score === pointsTotal) {
+          grid.classList.add('hidden')
+          endMessage.innerText = 'You Win!'
+          endMessage.classList.remove('hidden')
+        }
+        //console.log('my1 ->', foodCurrentPosition)
+      }
 
-    } else if (key === 37) {
+      //smashWall() 
+      // console.log('snakeCurrentPositionAfterMoving ->', snakeCurrentPosition)
+    } else if (key === 37 && snakeCurrentPosition % width !== 0) {
       // console.log('LEFT')
-      nav = -1
+      snakeCurrentPosition--
       movement++
-    
-    } else if (key === 38) {
+      if (snakeCurrentPosition === foodCurrentPosition) {
+        addfoodPosition(foodCurrentPosition)
+        score++
+        if (score === pointsTotal) {
+          grid.classList.add('hidden')
+          endMessage.innerText = 'You Win!'
+          endMessage.classList.remove('hidden')
+        }
+      }
+
+      //smashWall() 
+    } else if (key === 38 && snakeCurrentPosition >= width) {
       // console.log('UP')
-      nav = -width
+      snakeCurrentPosition -= width
       movement++
+      if (snakeCurrentPosition === foodCurrentPosition) {
+        addfoodPosition(foodCurrentPosition)
+        score++
+        if (score === pointsTotal) {
+          grid.classList.add('hidden')
+          endMessage.innerText = 'You Win!'
+          endMessage.classList.remove('hidden')
+        }
+      }
 
       //smashWall() 
-    } else if (key === 40) {
+    } else if (key === 40 && snakeCurrentPosition + width <= width * width - 1) {
       // console.log('DOWN')
-      nav = +width
+      snakeCurrentPosition += width
       movement++
+      if (snakeCurrentPosition === foodCurrentPosition) {
+        addfoodPosition(foodCurrentPosition)
+        //tail = snakeCurrentPosition
+        //cells[tail].classList.remove(snakeClass)
+        //currentSnake.unshift(currentSnake[0] + direction);
+        // movement ends here
+        //snakeCurrentPosition.push(tail)
+        //cells[snakeCurrentPosition].classList.add(snakeClass)
+        //snakeCurrentPosition++
+
+        score++
+        if (score === pointsTotal) {
+          grid.classList.add('hidden')
+          endMessage.innerText = 'You Win!'
+          endMessage.classList.remove('hidden')
+        }
+      }
 
       //smashWall() 
-    } 
+    } else {
+      if (movement !== 0) {
+        alert('You hit something')
+        lives = lives - 1
+        console.log(lives)
+        if (lives === 0) {
+          grid.classList.add('hidden')
+          
+          // Show the message
+          endMessage.innerText = 'Try Again!'
+          endMessage.classList.remove('hidden')
+        }
+      }
+    }
 
-    addSnake(snakeCurrentPosition[0])
+    addSnake(snakeCurrentPosition)
     console.log('Score=>', score)
   }
 
@@ -217,9 +214,9 @@ window.addEventListener('DOMContentLoaded', init)
 
 // The snake container/house - grids 8X8 , looping to 64  and these grids will be stored in the snake container 
 
-// Snake movement - set nav for snakes, set interval for the time it will take for the snake to move around and the if statement to condition the user to loose if the container edge is touched I.e passed
+// Snake movement - set direction for snakes, set interval for the time it will take for the snake to move around and the if statement to condition the user to loose if the container edge is touched I.e passed
 
-// Movement nav by the user - use event.keyCode, adding the set width or subtracting it, then set an eventListener 
+// Movement direction by the user - use event.keyCode, adding the set width or subtracting it, then set an eventListener 
 
 // Snake food - using random number 
 // Snake feeding - the divs without the snake is where the apple function pops up - in a conditional statement within a function
