@@ -2,6 +2,8 @@ function init() {
 
   const startButton = document.querySelector('#start-button')
   const grid = document.querySelector('.grid')
+  const displayPoints = document.querySelector('.points')
+  const displayLives = document.querySelector('.lives')
   const endMessage = document.querySelector('h2')
   // console.log(grid)
 
@@ -11,7 +13,7 @@ function init() {
   console.log(cells)
 
   const snakeInitialPosition = 0
-  let snakeCurrentPosition = [1, 0]
+  const snakeCurrentPosition = [1, 0]
   const snakeClass = 'snake'
   const foodClass = 'food'
   // console.log(foodClass)
@@ -34,10 +36,19 @@ function init() {
 
 
 
+  // hide game
+  function hideGame () {
+    if (startButton !== clicked) {
+      grid.classList.add('hidden')
+      startGame()
+      endMessage.classList.remove('hidden')
+    }
+  }
+
   // start game
   function startGame () {
     console.log('clicked')
-    cells[foodCurrentPosition].classList.add(foodClass) // show thefood at the start position, outside of the interval so this only happens once 
+    cells[foodCurrentPosition].classList.add(foodClass) // show the food at the start position, outside of the interval so this only happens once 
     // console.log('cells ->', cells)
     // console.log('cells[foodCurrentPosition] ->', cells[foodCurrentPosition])
     // console.log('cells[foodCurrentPosition].classList ->', cells[foodCurrentPosition].classList)
@@ -91,10 +102,12 @@ function init() {
       cells[snakeCurrentPosition[0]].classList.remove(foodClass)
       cells[tail].classList.add(snakeClass)
       snakeCurrentPosition.push(tail)
-      //randomApple(squares);
       addfoodPosition(cells)
 
       score++
+      displayPoints.innerText = `Score: ${score}`
+      // console.log(score)
+
       if (score === pointsTotal) {
         grid.classList.add('hidden')
         endMessage.innerText = 'You Win!'
