@@ -29,6 +29,7 @@ h1 {
   justify-content: center;
   height: 600px;
   width: 600px;
+  background-color: green;
 }
 
 .grid div {
@@ -39,11 +40,12 @@ h1 {
 }
 
 .snake {
-  background-color: black;
+  background-color: rgb(253, 157, 78);
 }
 
 .food {
-  background-color: chartreuse;
+  background-color: red;
+  border-radius: 50px;
 }
 
 .score-box {
