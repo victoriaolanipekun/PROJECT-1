@@ -1,9 +1,15 @@
+
 function init() {
 
+  // const gameSound = document.querySelector('#start-button')
+  // console.log(gameSound)
+  const audio = document.querySelector('audio')
+  // console.log(audio)
   const startButton = document.querySelector('#start-button')
+  // const replayGame = document.querySelector('.try-again')
   const grid = document.querySelector('.grid')
   const displayPoints = document.querySelector('.points')
-  const displayLives = document.querySelector('.lives')
+  // const displayLives = document.querySelector('.lives')
   const endMessage = document.querySelector('h2')
   // console.log(grid)
 
@@ -25,7 +31,7 @@ function init() {
   let life = 1
   let movement = 0
   let foodInitialPosition = 0
-  let speedTime = 1
+  let speedTime = 0.9
   let crawlTime = 1000
   let crawl = 0
   let nav = 1
@@ -35,19 +41,19 @@ function init() {
   console.log('foodCurrentPosition', foodCurrentPosition)
 
 
-
-  // hide game
-  function hideGame () {
-    if (startButton !== clicked) {
-      grid.classList.add('hidden')
-      startGame()
-      endMessage.classList.remove('hidden')
-    }
+  
+  // play sound
+  function playSound() {
+    console.log('clicked')
+    audio.src = './sounds/snakecharmer .mp3' 
+    console.log('audio with src ->', audio)
+    audio.play()
   }
-
+  
   // start game
   function startGame () {
     console.log('clicked')
+    playSound()
     cells[foodCurrentPosition].classList.add(foodClass) // show the food at the start position, outside of the interval so this only happens once 
     // console.log('cells ->', cells)
     // console.log('cells[foodCurrentPosition] ->', cells[foodCurrentPosition])
@@ -56,6 +62,15 @@ function init() {
     crawl = setInterval(crawlAfter, crawlTime)
     addfoodPosition(foodCurrentPosition)
   }
+
+  // replay game
+  // function replay() {
+  //   hideLose()
+  //   hideWin()
+  //   createGrid()
+  //   startGame()
+  // }
+  
   // creating the grid 
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
@@ -86,15 +101,35 @@ function init() {
       (snakeCurrentPosition[0] - width <= 0 && nav === -width) ||
       cells[snakeCurrentPosition[0] + nav].classList.contains(snakeClass)
     ) {
-      grid.classList.add('hidden')
-          
-      // Show the message
-      endMessage.innerText = 'Try Again!'
-      endMessage.classList.remove('hidden')
+      showLose()
       return true
     } else {
       return false
     }
+  }
+
+  function showWin() {
+    grid.classList.add('hidden')
+    endMessage.innerText = 'You Win!'
+    endMessage.classList.remove('hidden')
+  }
+
+  function showLose() {
+    grid.classList.add('hidden')
+    endMessage.innerText = 'Try Again!'
+    endMessage.classList.remove('hidden')
+  }
+
+  function hideWin() {
+    grid.classList.remove('hidden')
+    endMessage.innerText = ''
+    endMessage.classList.add('hidden')
+  }
+
+  function hideLose() {
+    grid.classList.remove('hidden')
+    endMessage.innerText = ''
+    endMessage.classList.add('hidden')
   }
 
   function feedSnake(cells, tail) {
@@ -109,9 +144,8 @@ function init() {
       // console.log(score)
 
       if (score === pointsTotal) {
-        grid.classList.add('hidden')
-        endMessage.innerText = 'You Win!'
-        endMessage.classList.remove('hidden')
+        clearInterval(crawl)
+        showWin()
       }
 
       clearInterval(crawl)
@@ -191,8 +225,9 @@ function init() {
   document.addEventListener('keyup', handleKeyUp)
 
 
-
+  // gameSound.addEventListener('click', playSound)
   startButton.addEventListener('click', startGame)
+  // replayGame.addEventListener('click', replay)
   createGrid()
 
 }

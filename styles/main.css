@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
 }
 
 body {
@@ -11,7 +12,6 @@ body {
 h1 {
   text-align: center;
   margin-top: 50px;
-  font-family: 'Press Start 2P', cursive;
 }
 
 .controls-wrapper {
@@ -22,7 +22,7 @@ h1 {
   width: 100%;
 }
 
-#start-button, .TryAgain {
+#start-button {
   margin: 20px;
   padding: 5px 20px;
 }
@@ -74,7 +74,7 @@ h1 {
   display: none;
 }
 
-.info-display {
+/* .info-display {
   background: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
@@ -84,7 +84,7 @@ h1 {
   top: 100px;
   left: 100px;
   position: fixed;
-}
+} */
 
 h2 {
   text-align: center;
