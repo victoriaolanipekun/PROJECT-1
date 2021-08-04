@@ -52,7 +52,6 @@ h1 {
 }
 
 .grid div {
-  /* border: 1px solid lightgrey; */
   flex-grow: 1;
   height: 10%;
   width: 10%;
@@ -64,8 +63,6 @@ h1 {
 }
 
 .food {
-  /* background-color: red; */
-  /* border-radius: 50px; */
   background-image: url('../assets/apple.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -81,18 +78,6 @@ h1 {
 .hidden {
   display: none;
 }
-
-/* .info-display {
-  background: rgb(255, 255, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  top: 100px;
-  left: 100px;
-  position: fixed;
-} */
 
 h2 {
   text-align: center;

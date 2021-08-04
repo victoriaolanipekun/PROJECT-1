@@ -1,15 +1,10 @@
 
 function init() {
-
-  // const gameSound = document.querySelector('#start-button')
-  // console.log(gameSound)
   const audio = document.querySelector('audio')
   // console.log(audio)
   const startButton = document.querySelector('#start-button')
-  // const replayGame = document.querySelector('.try-again')
   const grid = document.querySelector('.grid')
   const displayPoints = document.querySelector('.points')
-  // const displayLives = document.querySelector('.lives')
   const endMessage = document.querySelector('h2')
   // console.log(grid)
 
@@ -62,22 +57,11 @@ function init() {
     crawl = setInterval(crawlAfter, crawlTime)
     addfoodPosition(foodCurrentPosition)
   }
-
-  // replay game
-  // function replay() {
-  //   hideLose()
-  //   hideWin()
-  //   createGrid()
-  //   startGame()
-  // }
   
   // creating the grid 
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      // console.log('cell ->', cell)
-      // cell.innerText = i
-      // console.log('cell ->', cell)
       grid.appendChild(cell)
       // to store the cell values in the array
       cells.push(cell)
@@ -132,6 +116,7 @@ function init() {
     endMessage.classList.add('hidden')
   }
 
+  // Snake feeding
   function feedSnake(cells, tail) {
     if (cells[snakeCurrentPosition[0]].classList.contains(foodClass)) {
       cells[snakeCurrentPosition[0]].classList.remove(foodClass)
@@ -154,6 +139,7 @@ function init() {
     }
   }
 
+  // Snake movement
   function crawling(cells) {
     const tail = snakeCurrentPosition.pop()
     cells[tail].classList.remove(snakeClass)
