@@ -246,7 +246,7 @@ There were many aspects of the game that I was proud of including the constructi
 If I had more time with my project there would be a number of features that I would have liked to have the opportunity to add:
 
 <li>Create different difficulty levels</li>
-<li>Created a two player mode on the same computer, where players take turns</li>
+<li>Create a two player mode, where players take turns</li>
 <li>Make it mobile friendly</li>
 
 
