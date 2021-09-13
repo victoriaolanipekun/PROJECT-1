@@ -1,5 +1,11 @@
 ![image](https://user-images.githubusercontent.com/71145696/128151120-b3a88874-26e0-4e8c-b2e1-7dea3d5d3b3a.png)<h1> Project #1: The Snake Game </h1>
 ![Snake Game MVP Screenshot](https://github.com/victoriaolanipekun/PROJECT-1/blob/main/assets/Screenshot%202021-08-04%20at%2016.54.25.png?raw=true)
+
+<h1>Overview</h1>
+<p>This project was my first ever JavaScript project and for the Software Engineering Immersive course at General Assembly. As a child I loved the snake game on the Nokia 3310 mobile phone and spent alot of time playing so it was such a natural for me to want to replicate the classic game that comes with much fun memories. Snake is the common name for a video game concept where the player maneuvers a line (that is the snake) which grows in length, with the line itself being a primary obstacle.  After a variant was preloaded on Nokia mobile phones in 1998, there was a resurgence of interest in the snake concept as it found a larger audience.</p>
+
+<p>The player controls the snake on a bordered plane. As it moves forward, it leaves a trail behind, resembling a moving snake. The player loses when the snake runs into the screen border or itself. In this variant, a sole player attempts to eat apples by running into them with the head of the snake. Each item eaten makes the snake longer, so avoiding collision with the snake becomes progressively more difficult as there is an increase in speed.</p>
+
 <h1>Brief</h1>
 
 Design a grid-based game using HTML, CSS, and JavaScript learnt in the first three weeks of the course. The game should be playable for one player and the player must be able to win and lose. Timeframe: 1 week.
@@ -9,10 +15,6 @@ Please follow the link to play my game: https://victoriaolanipekun.github.io/PRO
 
 Repository link: https://github.com/victoriaolanipekun/PROJECT-1
 
-<h1>Motivation & Introduction</h1>
-<p>This project was my first ever JavaScript project and for the Software Engineering Immersive course. As a child I loved the snake game on the Nokia 3310 mobile phone and spent alot of time playing so it was such a natural for me to want to replicate the classic game that comes with much fun memories. Snake is the common name for a video game concept where the player maneuvers a line (that is the snake) which grows in length, with the line itself being a primary obstacle.  After a variant was preloaded on Nokia mobile phones in 1998, there was a resurgence of interest in the snake concept as it found a larger audience.</p>
-
-<p>The player controls the snake on a bordered plane. As it moves forward, it leaves a trail behind, resembling a moving snake. The player loses when the snake runs into the screen border or itself. In this variant, a sole player attempts to eat apples by running into them with the head of the snake. Each item eaten makes the snake longer, so avoiding collision with the snake becomes progressively more difficult as there is an increase in speed.</p>
 
 <h1>Technologies used</h1>
 <li>HTML5</li>
@@ -23,8 +25,8 @@ Repository link: https://github.com/victoriaolanipekun/PROJECT-1
 <li>Google Fonts</li>
 <li>Git & GitHub</li>
 
-<h1>Process</h1>
-<p>My first approach to developing the game was sketching out a plan of all the different functionalities the game should have, and priotised them to critical for MVP and Nice-To-Haves. I then pseudocoded my MVP into smaller bits to make sure I could deliver it within the right timeframe and also allow time for polishing and styling. I then went ahead to code the first stages which was implementing the grid on the page</p>
+<h1>Approach</h1>
+<p>My first approach to developing the game was sketching out a plan of all the different functionalities the game should have, and priotised them to critical for MVP and Nice-To-Haves. I then pseudocoded my MVP into smaller bits to make sure I could deliver it within the right timeframe and also allow time for polishing and styling. I then went ahead to code the first stages which was implementing the grid on the page.</p>
 
 <pre>
     
@@ -86,7 +88,7 @@ Repository link: https://github.com/victoriaolanipekun/PROJECT-1
       
 </pre>
 
-<p>After successful testing of the grid and keyboard movement controls, I then went ahead to write some functions that handled the position of the snake which helped to add and remove the snake from a particular grid position</p>
+<p>After successful testing of the grid and keyboard movement controls, I then went ahead to write some functions that handled the position of the snake which helped to add and remove the snake from a particular grid position.</p>
 
 <pre>
     
@@ -245,8 +247,8 @@ There were many aspects of the game that I was proud of including the constructi
 <h1>Future improvements</h1>
 If I had more time with my project there would be a number of features that I would have liked to have the opportunity to add:
 
-<li>Create different difficulty levels</li>
-<li>Create a two player mode, where players take turns</li>
-<li>Make it mobile friendly</li>
+<li>Create different difficulty levels.</li>
+<li>Create a two player mode, where players take turns.</li>
+<li>Make it mobile friendly.</li>
 
 
