@@ -242,7 +242,7 @@ There were many aspects of the game that I was proud of including the constructi
 </pre>
 
 <h1>Key Learnings</h1>
-<p>Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers, also in hindsight I would spend a lot more time planning each stage of my build as this would help prevents some error I had to debug.</p>
+<p>Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers, also in hindsight I would spend a lot more time planning each stage of my build as this would help prevent some error I had to debug.</p>
 
 <h1>Future improvements</h1>
 If I had more time with my project there would be a number of features that I would have liked to have the opportunity to add:
